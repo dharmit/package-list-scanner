@@ -1,0 +1,17 @@
+type: scanner
+scanner_name: package-list-scanner
+image_name: registry.centos.org/dharmit/package-list-scanner
+default_scan: rpm-list
+custom_args: ["-v", "/var/run/docker.sock:/var/run/docker.sock", "-e", "IMAGE_NAME=$IMAGE_NAME"]
+scans: [
+  { 
+    name: rpm-list,
+    args: ['sh', 'rpm-list.sh'],
+    description: "Lists the rpm packages in the container image being scanned"
+  },
+  {
+    name: pip-list,
+    args: ['sh', 'npm-list.sh'],
+    description: "Lists the pip packages in the container image being scanned"
+  }
+]
