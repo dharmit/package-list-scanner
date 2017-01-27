@@ -33,14 +33,17 @@ Make sure you have `centos:centos7` available locally before you try to mount
     $ atomic scan --scanner package-list-scanner --rootfs=/mnt registry.centos.org/centos/centos
     ```
 
+  At the moment, it's kinda hard-coded to use `/mnt` for mounting container's
+rootfs. If you opt to use a different directory instead, you might need to make
+changes to `rpm-list.sh` script.
+
 - List pip packages in CentOS based image:
 
     ```
     $ IMAGE_NAME=<image-name> atomic scan --scanner pacakge-list-scanner --scan_type pip-list <image-name>
     ```
 
-###NOTE
+  Similarly for list of packages installed via npm (global packages) and gem,
+replace `pip-list` in `--scan_type` for above command with `npm-list` and
+`gem-list` respectively.
 
-1. At the moment, it's kinda hard-coded to use `/mnt` for mounting container's
-rootfs. If you opt to use a different directory instead, you might need to make
-changes to `rpm-list.sh` script. I haven't tested it yet.
