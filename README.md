@@ -27,10 +27,16 @@ Steps to use:
 
 Make sure you have `centos:centos7` available locally before you try to mount
 
-- Run the scanner on CentOS based images:
+- List rpm packages in CentOS based image:
 
     ```
-    $ atomic scan --scanner rpm-list-scanner --rootfs=/mnt registry.centos.org/centos/centos
+    $ atomic scan --scanner package-list-scanner --rootfs=/mnt registry.centos.org/centos/centos
+    ```
+
+- List pip packages in CentOS based image:
+
+    ```
+    $ IMAGE_NAME=<image-name> atomic scan --scanner pacakge-list-scanner --scan_type pip-list <image-name>
     ```
 
 ###NOTE
@@ -38,7 +44,3 @@ Make sure you have `centos:centos7` available locally before you try to mount
 1. At the moment, it's kinda hard-coded to use `/mnt` for mounting container's
 rootfs. If you opt to use a different directory instead, you might need to make
 changes to `rpm-list.sh` script. I haven't tested it yet.
-
-2. Once you do `atomic install` you'll see a scan type called `pip-list` under
-   `atomic scan --list` for the scanner `package-list-scanner`. This scan type
-hasn't been implemented yet but will be done shortly.

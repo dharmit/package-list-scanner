@@ -11,7 +11,7 @@ scans: [
   },
   {
     name: pip-list,
-    args: ['sh', 'npm-list.sh'],
+    args: ['python', 'scanner.py', 'pip'],
     description: "Lists the pip packages in the container image being scanned"
   }
 ]
