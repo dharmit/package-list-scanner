@@ -57,7 +57,7 @@ try:
     elif cli_arg == "gem":
         exe = client.exec_create(
             container=container.get("Id"),
-            cmd="gem outdated"
+            cmd="gem list"
         )
 
         response = client.exec_start(exe)
@@ -66,7 +66,7 @@ try:
     elif cli_arg == "npm":
         exe = client.exec_create(
             container=container.get("Id"),
-            cmd="npm -g ls --depth=0 | awk 'NR>1 {print $2}'"
+            cmd="npm -g ls --depth=0"
         )
 
         response = client.exec_start(exe)
@@ -77,6 +77,9 @@ try:
             "{} binary does not exist in container image".format(cli_arg)
         )
     else:
+        if cli_arg == "npm":
+            temp = response.rstrip().split("\n")[1:]
+            response = "\n".join([i.split(" ")[1] for i in temp])
         write_to_file(
             cli_arg,
             response
