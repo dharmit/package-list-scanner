@@ -66,7 +66,7 @@ try:
     elif cli_arg == "npm":
         exe = client.exec_create(
             container=container.get("Id"),
-            cmd="npm outdated -g"
+            cmd="npm -g ls --depth=0 | awk 'NR>1 {print $2}'"
         )
 
         response = client.exec_start(exe)
